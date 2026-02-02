@@ -1,4 +1,4 @@
-# quits
+# Quiz
 
 ## What I Learned
 - How to call the value in a dictionary
