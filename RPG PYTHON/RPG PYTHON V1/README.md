@@ -21,5 +21,6 @@ Make sure Python is installed, then run:
 python main.py
 
 ## Demo
+
 ![Game Screenshot](screenshot1.JPG)
 ![Game Screenshot](screenshot2.JPG)
