@@ -13,6 +13,11 @@
 - Avoiding circular imports between files (Two files importing each other (player.py ↔ enemy.py) causes errors.)
 - Designing enemy behavior without hard-coding (Use methods like enemy.take_turn() so each enemy decides its own action.)
 
+## Demo
+
+![Game Screenshot](screenshot1.JPG)
+![Game Screenshot](screenshot2.JPG)
+
 ## How to Run
 
 Make sure Python is installed, then run:
@@ -20,7 +25,3 @@ Make sure Python is installed, then run:
 ```bash
 python main.py
 
-## Demo
-
-![Game Screenshot](screenshot1.JPG)
-![Game Screenshot](screenshot2.JPG)
