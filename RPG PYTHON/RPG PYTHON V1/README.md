@@ -1,5 +1,7 @@
 # RPG game
 
+first day : 06/02/2026
+
 ## what i learn
 - learn to use super()
 - try using enumerate(), isinstance()
