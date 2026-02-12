@@ -18,7 +18,9 @@ This version upgrades the classic console implementation into a fully interactiv
 
 ## Challenge
 One of the trickiest parts of this project was understanding how to correctly connect buttons inside a loop:
+
 btn.clicked.connect(lambda _, i=index: self.on_click(i))
+
 I learned that:
 - Qt’s .clicked.connect() requires a function reference.
 - Using lambda allows passing arguments to a function.
