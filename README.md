@@ -1,0 +1,13 @@
+# Learning Projects
+
+## Overview
+
+This repository contains a collection of projects I built while learning Python. Each project represents my progress over time, focusing on improving my understanding of programming concepts, problem-solving, and code structure.
+
+## Purpose
+
+Track my learning journey month by month
+
+Practice core programming concepts
+
+Experiment with different types of projects
