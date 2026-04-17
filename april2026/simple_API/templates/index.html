@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expense Tracker</title>
+    </head>
+    <body>
+        <h1>Expense Tracker</h1>
+
+        <ul>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="container mt-3">
+                    {% for message in messages %}
+                    <div class="alert alert-info py-2 mb-2" role="alert">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% endwith %}
+        </ul>
+
+        <h2>Add Expense</h2>
+        <input id = "name" placeholder="name">
+        <input id = "amount" placeholder="amount" type="number">
+        <button onclick="addExpense()">Add</button>
+
+        <h2>Expenses : </h2>
+        <table border="1">
+            <thead>
+                <!--Top part (header row)-->
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <!--list of expenses-->
+            <tbody id="list"></tbody>
+        </table>
+
+        <h2>Total: <span id="total">0</span></h2>
+
+        <script src="script.js"></script>
+        <script>
+
+            async function fetchExpenses() {
+                const res = await fetch("http://127.0.0.1:5000/expenses");
+                const data = await res.json();
+
+                const list = document.getElementById("list");
+                list.innerHTML = "";
+
+                let total = 0;
+
+                data.forEach((exp) => {
+                    const tr = document.createElement("tr");
+
+                    total += exp.amount;
+                    
+                    tr.innerHTML = `
+                        <td>${exp.id}</td>
+                        <td>${exp.name}</td>
+                        <td>${exp.amount}</td>
+                        <td>
+                            <button onclick="editExpense(${exp.id}, '${exp.name}', ${exp.amount})">Edit</button>
+                            <button onclick="deleteExpense(${exp.id})">Delete</button>
+                        </td>
+                    `;
+
+                    list.appendChild(tr);
+                });
+
+                document.getElementById("total").textContent = total;
+            }
+
+            window.onload = fetchExpenses; // run fetchExpenses() when finishes loading
+
+            async function deleteExpense(id) {
+                await fetch("http://127.0.0.1:5000/delete", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id })
+                });
+
+                fetchExpenses();
+            }
+
+            let currentId = null;
+
+            function editExpense(id, name, amount) {
+                document.getElementById("name").value = name;
+                document.getElementById("amount").value = amount;
+
+                currentId = id;
+            }
+
+            async function addExpense() {
+                const name = document.getElementById("name").value;
+                const amount = parseFloat(document.getElementById("amount").value);
+
+                if(currentId) {
+                    //EDIT
+                    await fetch("http://127.0.0.1:5000/update", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ id: currentId, name, amount })
+                    });
+
+                    currentId = null;
+                } else {
+                    //ADD
+                    await fetch("http://127.0.0.1:5000/add", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ name, amount })
+                    });
+                }
+
+                fetchExpenses();
+            }
+        </script>
+
+
+    </body>
+</html>

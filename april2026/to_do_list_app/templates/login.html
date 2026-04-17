@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Loging{% endblock %}
+{% block content %}
+<div class="row justify-content-center py-4">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="h4 text-center mb-4">Login</h3>
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input class="form-control" name="username" placeholder="username" value="{{ username or '' }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input class="form-control" name="password" type="password" placeholder="password" required>
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <p class="mt-3 text-center mb-0">Dont have an account yet? <a href="{{ url_for('auth.register')}}">Register</a></p>
+    </div>
+</div>
+{% endblock %}

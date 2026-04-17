@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div class="row justify-content-center py-4">
+    <div class="col-12 col-md-6 col-lg-5 text-center">
+        <img src="{{ url_for('static', filename='images/1.png') }}" class="img-fluid">
+    </div>
+</div>
+<div class="row justify-content-center py-4 gap-2">
+    {% if session.get("username") %}
+        <div class="col-12 col-md-6 col-lg-5 text-center fw-bold">Welcome, {{ session.get("username")}}!</div>
+        <a href="{{ url_for('home.dashboard') }}" class="btn btn-primary">Dashboard</a>
+    {% else %}
+        <div class="d-grid gap-2">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+            <p class="mt-3 text-center mb-0">Dont have an account yet? <a href="{{ url_for('auth.register')}}">Register</a></p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Add list{% endblock %}
+{% block content %}
+<div class="row justify-content-center py-4">
+    <div class="col-12 col-md-7 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+              <h3 class="h4 text-center mb-4">Add Task</h3>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Task description</label>
+                        <input
+                            class="form-control"
+                            name="description"
+                            type="text"
+                            placeholder="description"
+                            required>
+                            
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">Add</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
