@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a collection of projects I built while learning Python. Each project represents my progress over time, focusing on improving my understanding of programming concepts, problem-solving, and code structure.
+This repository contains a collection of projects I built while learning to code. Each project represents my progress over time, focusing on improving my understanding of programming concepts, problem-solving, and code structure.
 
 ## Purpose
 
